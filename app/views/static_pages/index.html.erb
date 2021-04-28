@@ -1,0 +1,11 @@
+<%= form_with url: "/static_pages", method: "get" do |f| %>
+  <%= f.label(:id, "Enter the user ID") %>
+  <%= f.text_field :id %>
+  <%= f.submit "Submit" %>
+<% end %>
+
+<% unless params[:id].nil? %>
+  <% @list.each do |photo| %>
+    <%= image_tag(Flickr.url(@flickr.photos.getInfo(:photo_id => photo.id, :secret => photo.secret))) %>
+  <% end %>
+<% end %>
